@@ -1,0 +1,84 @@
+:root {
+    --color-blue: #b2FCFF;  
+    --color-white:#FFFFFF;  
+    --color-black1: #272727; 
+    --color-black2:#2d2d2d;
+    --color-black3:#414141;
+    --color-black4:#1c1c1c;
+    --color-black5:#343434;
+    --color-purple: #b040ff;
+
+    }
+  
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:var(--color-black1) ;
+    color: var(--color-white);
+
+  }
+
+  .logo_header{
+    width: 45px;
+  }
+
+  .header, .navigation_header{
+     display: flex;
+     flex-direction:row;
+     align-items: center;
+
+  }
+
+  .header{
+    background-color: var(--color-black2);
+    box-shadow: 1px 1px 4px var(--color-black4);
+    height: 3.5em;
+    justify-content: space-between;
+    padding: 0 10%;
+    box-shadow: 0px 10px 85px rgba(255, 255, 255, 0.292);
+  }
+
+  .navigation_header{
+    gap: 3em;
+  }
+
+  .navigation_header a{
+    text-decoration: none;
+    color: var(--color-blue);
+    transition: 1s;
+    font-weight:  bold;
+  }
+
+  .active{
+    background-color: var(--color-black3);
+    padding: 10px;
+    border-radius: 4.5px;
+  }
+
+  #conteudo{
+    display: block;
+    background-color: white;
+    color: black;
+    width: 50%;
+    margin: 30px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px  #b2fcff62;
+  }
+
+  #conteudo > p,h1{
+    padding: 10px;
+  }
+
+
+  .logo_texto{
+
+  }
+
+
+  .violao_deitado{
+    
+  }
