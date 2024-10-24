@@ -53,6 +53,12 @@
     font-weight:  bold;
   }
 
+  .navigation_header > a:hover{
+    background-color: hsla(209, 95%, 69%, 0.26);
+    padding: 10px;
+    border-radius: 4.5px;
+  }
+
   .active{
     background-color: var(--color-black3);
     padding: 10px;
@@ -61,17 +67,36 @@
 
   #conteudo{
     display: block;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     color: black;
-    width: 50%;
+    width: 70vw;
+    margin: 30px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px  #b2fcff38;
+    padding: 5px;
+    
+  }
+  #conteudoM{
+    display: block;
+    background-color: rgba(255, 255, 255, 0.906);
+    color: black;
+    width: 80vw;
     margin: 30px auto;
     border-radius: 5px;
     box-shadow: 0px 0px 20px  #b2fcff62;
+    padding: 20px;
   }
 
-  #conteudo > p,h1{
-    padding: 10px;
+  #conteudoM > h1{
+    color: #0c6fcb;
   }
+   #conteudoM > h2{
+    color:#64B3FB ;
+   }
+
+   div#conteudoM > p#introducao{
+    font-size: 21px;
+   }
 
 
   .logo_texto{
