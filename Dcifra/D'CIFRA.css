@@ -59,9 +59,14 @@
     border-radius: 4.5px;
   }
 
-  .active{
+  .ativo{
     background-color: var(--color-black3);
     padding: 10px;
+    border-radius: 4.5px;
+  }
+
+  div#active{
+    background-color: var(--color-black3);
     border-radius: 4.5px;
   }
 
