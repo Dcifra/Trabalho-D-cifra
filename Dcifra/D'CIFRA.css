@@ -15,20 +15,11 @@
     padding: 0;
   }
 
-  div.fundo{
-    background-color: black;
-    background-image: url(Imagens/back.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 25vh;
-    width: 100%;
-    color: black;
-  }
-
   body{
     font-family: Arial, Helvetica, sans-serif;
     background-color:var(--color-black1) ;
     color: var(--color-white);
+
   }
 
   .logo_header{
@@ -111,3 +102,13 @@
    div#conteudoM > p#introducao{
     font-size: 21px;
    }
+
+
+  .logo_texto{
+
+  }
+
+
+  .violao_deitado{
+    
+  }
