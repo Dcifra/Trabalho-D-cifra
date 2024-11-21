@@ -10,45 +10,66 @@
 <body>
    <!-- começo da audiodescrição -->
    <script>
-       // Inicializar o mecanismo de síntese de fala
-       const synth = window.speechSynthesis;
-       let utterance; // Variável para armazenar o objeto da fala
-   
-       // Função para iniciar a audiodescrição
-       function iniciar() {
-         // Capturar o texto
-         const texto = document.getElementById("descricao").innerText;
-   
-         // Verificar se já há uma fala em andamento
-         if (synth.speaking) {
-           synth.cancel(); // Cancelar qualquer fala ativa
-         }
-   
-         // Criar a nova instância de fala
-         utterance = new SpeechSynthesisUtterance(texto);
-         utterance.lang = "pt-BR"; // Configurar o idioma
-         synth.speak(utterance);
-       }
-   
-       // Função para pausar a audiodescrição
-       function pausar() {
-         if (synth.speaking && !synth.paused) {
-           synth.pause();
-         }
-       }
-   
-       // Função para retomar a audiodescrição
-       function retomar() {
-         if (synth.paused) {
-           synth.resume();
-         }
-       }
-   
-       // Função para parar completamente a audiodescrição
-       function parar() {
-         synth.cancel(); // Cancela toda a fala ativa
-       }
-     </script>
+    const synth = window.speechSynthesis;
+    let utterance; // Armazena o objeto da fala
+    let velocidade = 1.0; // Velocidade inicial
+
+    // Função para iniciar a audiodescrição
+    function iniciar() {
+      const texto = document.getElementById("descricao").innerText;
+
+      // Cancelar fala em andamento
+      if (synth.speaking) {
+        synth.cancel();
+      }
+
+      // Criar nova instância de fala
+      utterance = new SpeechSynthesisUtterance(texto);
+      utterance.lang = "pt-BR"; // Idioma
+      utterance.rate = velocidade; // Configurar a velocidade atual
+      synth.speak(utterance);
+    }
+
+    // Função para pausar a audiodescrição
+    function pausar() {
+      if (synth.speaking && !synth.paused) {
+        synth.pause();
+      }
+    }
+
+    // Função para retomar a audiodescrição
+    function retomar() {
+      if (synth.paused) {
+        synth.resume();
+      }
+    }
+
+    // Função para parar a audiodescrição
+    function parar() {
+      synth.cancel();
+    }
+
+    // Função para aumentar a velocidade
+    function aumentarVelocidade() {
+      if (velocidade < 3.0) { // Limite máximo de 3x para não soar muito rápido
+        velocidade += 0.1;
+        atualizarIndicador();
+      }
+    }
+
+    // Função para diminuir a velocidade
+    function diminuirVelocidade() {
+      if (velocidade > 0.5) { // Limite mínimo de 0.5x para não ficar inaudível
+        velocidade -= 0.1;
+        atualizarIndicador();
+      }
+    }
+
+    // Função para atualizar o indicador de velocidade
+    function atualizarIndicador() {
+      document.getElementById("velocidade-indicador").innerText = `Velocidade: ${velocidade.toFixed(1)}x`;
+    }
+  </script>
    <!-- fim da audiodescrição -->
 
    <!-- começo da libras -->
@@ -83,182 +104,195 @@
         <button class="butao" onclick="pausar()">Pausar</button>
         <button class="butao" onclick="retomar()">Retomar</button>
         <button class="butao" onclick="parar()">Parar</button>
+
+        <div>
+          <button onclick="diminuirVelocidade()">Diminuir Velocidade</button>
+          <button onclick="aumentarVelocidade()">Aumentar Velocidade</button>
+          <span id="velocidade-indicador">Velocidade: 1.0x</span>
+        </div>
     </div>
-    <p id="introducao">
-         Nesses primeiros módulos, você irá aprender primeiramente o que é a música, após este aprendizado, você irá aprender as tão desejadas cifras de violão.
-        Nós sabemos que é chato mas é algo extremamente necessário pois a base de todas as músicas é a teoria musical, desta maneira, tentaremos manter as coisas menos entediantes possíveis. obrigado e bons estudos!
-    </p>
-     
- 
- 
- <h1>1º MODULO</h1> <br>
- 
- 
- 
- <h2>O QUE É A MÚSICA?</h2> <br>
- 
-   <p>
-       A música é a arte dos sons, a música é a mais antiga tipo de arte, desde os primórdios da terra já havia indícios de música e ao longo do tempo foram se evoluindo até o que conhecemos hoje.
-       Na música existem dois tipos de sons, os naturais e produzidos: <br> <br>
-        
-        <ul>
-            <li>Sons naturais: Emitidos pela natureza (relâmpagos, ventos, etc…)</li>
-            
-            <li>Sons produzidos: A voz ou instrumentos. (Violão, violino, canto, etc…)</li>
-            
-            Dentro desta categoria de sons produzidos existem mais duas vertentes os sons musicais e os não musicais
-            
-            <li>Som musical: São ondas sonoras afinadas e regulares um exemplo seriam as orquestras sinfonicas</li>
-            
-            <li>Som não musical: É mais conhecido como ruído como os barulhos gerados por uma construção</li>
-        </ul>
-        
-        A base da musica é Harmonia, melodia e ritmo.
-   </p> <br>
- 
- 
- 
- <h2>O QUE É RITMO?</h2> <br> 
- 
- <p>
-     Ritmo é a divisão ordenada dos tempos, você já parou para pensar como as orquestras conseguem tocar sincronizadas?
-     Elas tocam assim pois cada figura tem o seu valor e todas as partituras são escritas para se completarem, gerando aquele som agradável de se escutar.
-     
-     A seguir veremos as principais propriedades da música
- </p>   <br>
- 
- 
- 
- <h2>O QUE É HARMONIA?</h2>
- 
-     <p>Harmonia é a junção de sons que tocadas juntas criam um som harmônico igualitário entre si, os sons que vemos nas orquestras são notas diferentes para cada instrumento porém pela tonalidade do instrumento os sons se igualam sem nenhum se sobressair dos outros.</p> <br><br>
- 
- 
- 
- <h2>O QUE É MELODIA?</h2> <br>
- 
-    <p>
-        Melodia é basicamente os sons ordenados com intervalos, tempos de notas, sequencias e ritmo.
-        É o que traz a característica de uma música
-    </p> <br>
- 
- <h2>PROPRIEDADES DA MÚSICA</h2> <br> 
- 
- <p>As principais propriedades da musica são: Timbre, Duração, Intensidade e Altura</p> <br>
- 
- <ul>
-     <li>Timbre: É a propriedade que nos permite identificar o instrumento que esta sendo tocado, como por exemplo dois instrumentos vão fazer a nota ou acorde em Lá mas ao tocarem você percebe que há dois tipos de instrumentos mesmo eles dando a mesma nota, isto é o timbre é o DNA do instrumento</li>
-     
-     <li>Duração: É propriedade do som de ser longo ou curto.</li>
-     
-     
-     <li>Intensidade: É a propriedade que define o som ser forte ou fraco, isto não tem haver com grave, ou agudo você pode tocar uma nota aguda fraca como uma grave forte.</li>
-     
-     
-     <li>Altura: É a propriedade do som de ser grave, médio ou agudo.</li>
- </ul> <br>
- 
- 
- 
- <h2>NOTAS MUSICAIS</h2> <br>
- 
- <p>
-     Ao todo nós temos 7 notas musicais elas são: DÓ, RÉ, MI, FÁ, SOL, LÁ, SI.
-     Mas dentro de cada nota temos tons e semitons.
-     
-     
-     Tom: Tom é a maior diferença sonora que pode haver entre uma nota e outra, por exemplo da nota DÓ para o RÉ temos um tom completo dividindo.
-     
-     Semitom: Ao contrário do tom, o semitom é a menor diferença entre as notas, como por exemplo da nota SI para a nota DÓ temos um semitom de diferença. O que significa que se vermos um SI# em alguma música significa que você deve tocar um DÓ natural.
-     
-     
-     Se você não entendeu muito bem, não há problema algum pois nosso próximo assunto é assunto é exatamente esse.
- </p> <br>
- 
- 
- 
- <h2>ACIDENTES</h2> <br>
- 
- <p>
-     Os acidentes tem nomes fixos chamados Bemóis e os Sustenidos nós imaginamos que você apaixonado por música já ouviu falar deles, mas se você não sabe como funciona vamos explicar a seguir: <br> <br>
-     
-     <ul>
-         <li>
-             Bemol: Como vimos anteriormente sobre tom e semitom você agora já tem a base necessária para entender mais sobre o mundo musical, o bemol tem uma função incrível de baixar
-              a altura da nota em um semitom.
-                Pode parecer no momento confuso mas é mais simples do que você pensa, agora vamos te dar um gabarito sobre os bemois, da nota SI para a nota LÁ temos o espaço de um tom completo.
-                O que quer dizer que entre elas existe uma nota chamada SI b, significa que esta nota que você está tocando é uma nota um semitom mais alta que um LÁ e mais baixa que um SI, exatamente no meio entre elas.
-         </li> <br>
-         
-         Dando uma dica de ouro agora, as únicas notas que não temos um tom completo para termos os acidentes são entre o: MI e o FÁ, DÓ e o SI, pois a diferença entre elas já é de um semitom.
-         
-         
-         <li>Sustenido: Sustenido é bem similar ao bemol porém ao invés de abaixar um semitom o sustenido eleva um semitom então quer dizer que se vermos uma nota DÓ# quer dizer que estamos tocando um RÉb é a mesma nota com nomes diferentes. As notas sustenidas são:FÁ,DÓ,SOL,RÉ,LÁ,MI E SI estas são as notas sustenidas.</li> <br>
-     </ul> <br>
- </p> <br>
- 
- 
- <h2>METRÔNOMO</h2> <br> 
- 
-   <p>
-       Um metrônomo é um dispositivo usado para medir intervalos de tempo através de um clique audível em cada batida e pode realmente ajudar um músico a identificar quaisquer erros de tempo que possa estar cometendo, além de tocar cada ritmo com mais precisão e exatidão.
-       Ou seja, é um contador de tempo para o músico sempre tocar em harmonia com os outros músicos, claro que em uma orquestra por exemplo não haverá um metrônomo para medir os tempos, normalmente os músicos usam a batida do próprio pé como metrônomo.
-        
-        
-        Se você chegou até aqui parabéns você terminou a teoria musical, mas lembre isto é o básico sempre procure se aprofundar mais na música, pois quanto mais esforço mais resultados, agora você irá aprender as cifras que são o objetivo principal do projeto.
-   </p><br><br>
- 
- 
- 
- <h2>Cifras</h2> <br>
- <p>
-     Agora, a partir daqui você vai começar a aprender a realmente a ler as cifras para entender o que cada parte dela quer dizer para você poder começar a tocar qualquer música que você quiser.
-     Para aprender a ler cifras temos que aprender a montar acordes no violão, e para aprender temos que aprender o que são, e como montar um acorde. Então vamos lá: um acorde é um conjunto de três notas juntas, então vamos relembrar quais são as notas, Dó, Ré, Mi,Fá, Sol,Lá, Si, e aí volta para o Dó, nas cifras eles usam uma outra forma de representar as notas, que na minha opinião é uma forma mais fácil de aprender do que Dó, Ré, Mi…, eles usam letras do alfabeto! então as notas ficam assim: <br>
-     
-     Dó = C <br>
-     Ré = D <br>
-     Mi = E <br>
-     Fá = F <br>
-     Sol = G <br>
-     Lá = A <br>
-     Si = B <br>
-     <br> <br>
-     
-     E quando as notas são sustenidas ou bemois ela é representada com o “#” e o “b” na frente da nota, para exemplificar vamos usar a nota C(Dó): Assim ficaria C# e assim ficaria Cb. Agora vamos aprender a como montar um acorde, eles são feitos por 3 notas que são a Tônica, a Terça, e 1 tom e meio da Terça, sendo a tônica a nota que dá nome ao acorde a terça a nota 2 Tons depois da tônica e 1 tom e meio depois da terça, para exemplificar vamos usar o acorde de “C”(Dó): <br>
-     
-     
-     
-     
-     
-     
-     
-     acorde: C(dó) = C(dó),E(mi),G(sol) <br>
-     
-          2T        T/2 <br>
-     C —--> E—----> G <br>
-     
-     T= 1 Tom <br>
-     T/2= meio tom <br> <br>
-     
-     
-     Agora com os acordes explicados podemos passar para entender a cifra de vez. Nas horas que a cifra possuir a letra da música aparecerá o acorde que precisa ser tocado na hora em cima da letra da música, ele vai aparecer bem na exata hora em que precisa ser tocado, por exemplo na Cifra da musica Boate Azul: <br> <br>
-     
-     
-     
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            Cm <br>
-     Doente de amor procurei remédio <br>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;             Bb <br>
-     Na vida noturna <br>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               Ab <br>
-     Com a flor da noite <br>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                           G <br>
-     Em uma boate aqui na zona sul <br> <br>
-     
-     
-      O Cm(dó menor) será tocando na hora em que na música acabar de dizer “amor” e assim por diante.
-     
-     E já em uma tablatura, que geralmente é para representar algum solo, aparecerá as 6 cordas do violão e o número da casa que precisa estar sendo tocada, por exemplo na música de parabéns você tocaria apenas na corda E(mi) que fica mais embaixo do violão(a mais aguda), então tocaria duas vezes a corda solta depois na segunda casa, ai teria um espaço representando uma pausa e começaria tocando a corda solta, a quinta corda depois a quarta corda.
- </p>
+    <div id="descricao">
+      <div>
+        <p>primeiro decida velocidade que quer ler para começar a audiodescrição</p>
+        <button onclick="diminuirVelocidade()">Diminuir Velocidade</button>
+        <button onclick="aumentarVelocidade()">Aumentar Velocidade</button>
+        <span id="velocidade-indicador">Velocidade: 1.0x</span>
+      </div> <br> <br>
+      
+      <p id="introducao">
+           Nesses primeiros módulos, você irá aprender primeiramente o que é a música, após este aprendizado, você irá aprender as tão desejadas cifras de violão.
+          Nós sabemos que é chato mas é algo extremamente necessário pois a base de todas as músicas é a teoria musical, desta maneira, tentaremos manter as coisas menos entediantes possíveis. obrigado e bons estudos!
+      </p>
+       
+       
+       
+       <h1>1º MÓDULO</h1> <br>
+       
+       
+       
+       <h2>O QUE É A MÚSICA?</h2> <br>
+       
+         <p>
+         A música é a arte dos sons, a música é a mais antiga tipo de arte, desde os primórdios da terra já havia indícios de música e ao longo do tempo foram se evoluindo até o que conhecemos hoje.
+         Na música existem dois tipos de sons, os naturais e produzidos: <br> <br>
+      
+          <ul>
+              <li>Sons naturais: Emitidos pela natureza (relâmpagos, ventos, etc…)</li>
+      
+              <li>Sons produzidos: A voz ou instrumentos. (Violão, violino, canto, etc…)</li>
+      
+              Dentro desta categoria de sons produzidos existem mais duas vertentes os sons musicais e os não musicais
+      
+              <li>Som musical: São ondas sonoras afinadas e regulares um exemplo seriam as orquestras sinfonicas</li>
+      
+              <li>Som não musical: É mais conhecido como ruído como os barulhos gerados por uma construção</li>
+          </ul>
+      
+          A base da musica é Harmonia, melodia e ritmo.
+         </p> <br>
+       
+       
+       
+       <h2>O QUE É RITMO?</h2> <br> 
+       
+       <p>
+       Ritmo é a divisão ordenada dos tempos, você já parou para pensar como as orquestras conseguem tocar sincronizadas?
+       Elas tocam assim pois cada figura tem o seu valor e todas as partituras são escritas para se completarem, gerando aquele som agradável de se escutar.
+      
+       A seguir veremos as principais propriedades da música
+       </p>   <br>
+       
+       
+       
+       <h2>O QUE É HARMONIA?</h2>
+       <p>Harmonia é a junção de sons que tocadas juntas criam um som harmônico igualitário entre si, os sons que vemos nas orquestras são notas diferentes para cada instrumento porém pela tonalidade do instrumento os sons se igualam sem nenhum se sobressair dos outros.</p> <br><br>
+       
+       
+       
+       <h2>O QUE É MELODIA?</h2> <br>
+      <p>
+          Melodia é basicamente os sons ordenados com intervalos, tempos de notas, sequencias e ritmo.
+          É o que traz a característica de uma música
+      </p> <br>
+       
+       <h2>PROPRIEDADES DA MÚSICA</h2> <br> 
+       
+       <p>As principais propriedades da musica são: Timbre, Duração, Intensidade e Altura</p> <br>
+       
+       <ul>
+       <li>Timbre: É a propriedade que nos permite identificar o instrumento que esta sendo tocado, como por exemplo dois instrumentos vão fazer a nota ou acorde em Lá mas ao tocarem você percebe que há dois tipos de instrumentos mesmo eles dando a mesma nota, isto é o timbre é o DNA do instrumento</li>
+      
+       <li>Duração: É propriedade do som de ser longo ou curto.</li>
+      
+      
+       <li>Intensidade: É a propriedade que define o som ser forte ou fraco, isto não tem haver com grave, ou agudo você pode tocar uma nota aguda fraca como uma grave forte.</li>
+      
+      
+       <li>Altura: É a propriedade do som de ser grave, médio ou agudo.</li>
+       </ul> <br>
+       
+       
+       
+       <h2>NOTAS MUSICAIS</h2> <br>
+       
+       <p>
+       Ao todo nós temos 7 notas musicais elas são: DÓ, RÉ, MI, FÁ, SOL, LÁ, SI.
+       Mas dentro de cada nota temos tons e semitons.
+      
+      
+       Tom: Tom é a maior diferença sonora que pode haver entre uma nota e outra, por exemplo da nota DÓ para o RÉ temos um tom completo dividindo.
+      
+       Semitom: Ao contrário do tom, o semitom é a menor diferença entre as notas, como por exemplo da nota SI para a nota DÓ temos um semitom de diferença. O que significa que se vermos um SI# em alguma música significa que você deve tocar um DÓ natural.
+      
+      
+       Se você não entendeu muito bem, não há problema algum pois nosso próximo assunto é assunto é exatamente esse.
+       </p> <br>
+       
+       
+       
+       <h2>ACIDENTES</h2> <br>
+       
+       <p>
+       Os acidentes tem nomes fixos chamados Bemóis e os Sustenidos nós imaginamos que você apaixonado por música já ouviu falar deles, mas se você não sabe como funciona vamos explicar a seguir: <br> <br>
+      
+       <ul>
+           <li>
+               Bemol: Como vimos anteriormente sobre tom e semitom você agora já tem a base necessária para entender mais sobre o mundo musical, o bemol tem uma função incrível de baixar
+                a altura da nota em um semitom.
+                  Pode parecer no momento confuso mas é mais simples do que você pensa, agora vamos te dar um gabarito sobre os bemois, da nota SI para a nota LÁ temos o espaço de um tom completo.
+                  O que quer dizer que entre elas existe uma nota chamada SI b, significa que esta nota que você está tocando é uma nota um semitom mais alta que um LÁ e mais baixa que um SI, exatamente no meio entre elas.
+           </li> <br>
+      
+           Dando uma dica de ouro agora, as únicas notas que não temos um tom completo para termos os acidentes são entre o: MI e o FÁ, DÓ e o SI, pois a diferença entre elas já é de um semitom.
+      
+      
+           <li>Sustenido: Sustenido é bem similar ao bemol porém ao invés de abaixar um semitom o sustenido eleva um semitom então quer dizer que se vermos uma nota DÓ# quer dizer que estamos tocando um RÉb é a mesma nota com nomes diferentes. As notas sustenidas são:FÁ,DÓ,SOL,RÉ,LÁ,MI E SI estas são as notas sustenidas.</li> <br>
+       </ul> <br>
+       </p> <br>
+       
+       
+       <h2>METRÔNOMO</h2> <br> 
+       
+         <p>
+         Um metrônomo é um dispositivo usado para medir intervalos de tempo através de um clique audível em cada batida e pode realmente ajudar um músico a identificar quaisquer erros de tempo que possa estar cometendo, além de tocar cada ritmo com mais precisão e exatidão.
+         Ou seja, é um contador de tempo para o músico sempre tocar em harmonia com os outros músicos, claro que em uma orquestra por exemplo não haverá um metrônomo para medir os tempos, normalmente os músicos usam a batida do próprio pé como metrônomo.
+      
+      
+          Se você chegou até aqui parabéns você terminou a teoria musical, mas lembre isto é o básico sempre procure se aprofundar mais na música, pois quanto mais esforço mais resultados, agora você irá aprender as cifras que são o objetivo principal do projeto.
+         </p><br><br>
+       
+       
+       <h1>2º MÓDULO</h1>
+       <h2>Cifras</h2> <br>
+       <p>
+       Agora, a partir daqui você vai começar a aprender a realmente a ler as cifras para entender o que cada parte dela quer dizer para você poder começar a tocar qualquer música que você quiser.
+       Para aprender a ler cifras temos que aprender a montar acordes no violão, e para aprender temos que aprender o que são, e como montar um acorde. Então vamos lá: um acorde é um conjunto de três notas juntas, então vamos relembrar quais são as notas, Dó, Ré, Mi,Fá, Sol,Lá, Si, e aí volta para o Dó, nas cifras eles usam uma outra forma de representar as notas, que na minha opinião é uma forma mais fácil de aprender do que Dó, Ré, Mi…, eles usam letras do alfabeto! então as notas ficam assim: <br>
+      
+       Dó = C <br>
+       Ré = D <br>
+       Mi = E <br>
+       Fá = F <br>
+       Sol = G <br>
+       Lá = A <br>
+       Si = B <br>
+       <br> <br>
+      
+       E quando as notas são sustenidas ou bemois ela é representada com o “#” e o “b” na frente da nota, para exemplificar vamos usar a nota C(Dó): Assim ficaria C# e assim ficaria Cb. Agora vamos aprender a como montar um acorde, eles são feitos por 3 notas que são a Tônica, a Terça, e 1 tom e meio da Terça, sendo a tônica a nota que dá nome ao acorde a terça a nota 2 Tons depois da tônica e 1 tom e meio depois da terça, para exemplificar vamos usar o acorde de “C”(Dó): <br>
+      
+      
+      
+      
+      
+      
+      
+       acorde: C(dó) = C(dó),E(mi),G(sol) <br>
+      
+            2T        T/2 <br>
+       C —--> E—----> G <br>
+      
+       T= 1 Tom <br>
+       T/2= meio tom <br> <br>
+      
+      
+       Agora com os acordes explicados podemos passar para entender a cifra de vez. Nas horas que a cifra possuir a letra da música aparecerá o acorde que precisa ser tocado na hora em cima da letra da música, ele vai aparecer bem na exata hora em que precisa ser tocado, por exemplo na Cifra da musica Boate Azul: <br> <br>
+      
+      
+      
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            Cm <br>
+       Doente de amor procurei remédio <br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;             Bb <br>
+       Na vida noturna <br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               Ab <br>
+       Com a flor da noite <br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                           G <br>
+       Em uma boate aqui na zona sul <br> <br>
+      
+      
+        O Cm(dó menor) será tocando na hora em que na música acabar de dizer “amor” e assim por diante.
+      
+       E já em uma tablatura, que geralmente é para representar algum solo, aparecerá as 6 cordas do violão e o número da casa que precisa estar sendo tocada, por exemplo na música de parabéns você tocaria apenas na corda E(mi) que fica mais embaixo do violão(a mais aguda), então tocaria duas vezes a corda solta depois na segunda casa, ai teria um espaço representando uma pausa e começaria tocando a corda solta, a quinta corda depois a quarta corda.
+       </p>
+    </div>
  
  
  

@@ -16,7 +16,7 @@
       // Função para iniciar a audiodescrição
       function iniciar() {
         // Capturar o texto
-        const texto = document.getElementById("conteudo").innerText;
+        const texto = document.getElementById("descricao").innerText;
   
         // Verificar se já há uma fala em andamento
         if (synth.speaking) {
@@ -80,17 +80,32 @@
 </div>
 
 <img src="back.jpg"Pessoa lendo algo em libras" style="display: block;margin: auto;width: 100vw; height: 35vh;" >
-    <div id="conteudo">
+<div id="conteudo">
+      <div id="butoes">
+        <button class="butao" onclick="iniciar()">Iniciar Audiodescrição</button>
+        <button class="butao" onclick="pausar()">Pausar</button>
+        <button class="butao" onclick="retomar()">Retomar</button>
+        <button class="butao" onclick="parar()">Parar</button>    </div>
             <h1 style="text-align: center;;"></h1> <img src="Logo.png" height="50" width="50" id="logo_texto" alt="logo do D'cifra" style="display: block; margin: auto;"> 
-<!-- INTODUÇÃO -->
-<div style="text-align: center;">     
+            <!-- INTODUÇÃO -->
+            <div id="descricao" style="text-align: center;">     
 <div>
-  <div id="butoes">
-    <button class="butao" onclick="iniciar()">Iniciar Audiodescrição</button>
-    <button class="butao" onclick="pausar()">Pausar</button>
-    <button class="butao" onclick="retomar()">Retomar</button>
-    <button class="butao" onclick="parar()">Parar</button>
-  </div>
+  <div>
+    <p>primeiro decida velocidade da audiodescrição</p>
+    <div style="      
+      padding: 1px 5px 1px 5px;
+      width: 10%;
+      margin: auto;
+  
+      font-size: 16px;
+  
+      transition: 0.4s;
+    ">
+      <button onclick="aumentarVelocidade()">Aumentar Velocidade</button>
+      <button onclick="diminuirVelocidade()">Diminuir Velocidade</button>
+      <span id="velocidade-indicador">Velocidade: 1.0x</span>
+    </div>
+
   <p>
       Para qualquer que seja a necessidade o D'Cifra disponibiliza o arquivo PDF para impressão gratuita sem qualquer custo, nos agradacemos pela confiança depositada na nossa equipe e nesse projeto, de todos da equipe D'Cifra obrigado! <br><br>
   
