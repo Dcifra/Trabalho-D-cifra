@@ -15,11 +15,20 @@
     padding: 0;
   }
 
+  div.fundo{
+    background-color: black;
+    background-image: url(Imagens/back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 25vh;
+    width: 100%;
+    color: black;
+  }
+
   body{
     font-family: Arial, Helvetica, sans-serif;
     background-color:var(--color-black1) ;
     color: var(--color-white);
-
   }
 
   .logo_header{
@@ -103,12 +112,38 @@
     font-size: 21px;
    }
 
+   button.butao{
+    background-color: rgba(147, 145, 145, 0.288);
+    color: black;
 
-  .logo_texto{
+    border: black solid 1px;
+    border-radius:5px ; 
+    
+    padding: 1px 5px 1px 5px;
 
+    font-size: 16px;
+
+    transition: 0.4s;
   }
 
+  .butao:hover{
+    background-color: #0c6fcb61;
+    color: black;
+    transition: 0.4s;
+    font-size: 18px;
+  }
 
-  .violao_deitado{
+  div#butoes{
+    margin-top: 15px;
+    margin-bottom: 10px;
     
+  }
+
+  footer{
+    background-color: black;
+    color: white;
+
+    height: 10%;
+
+    text-align: center;
   }

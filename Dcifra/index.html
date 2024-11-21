@@ -6,9 +6,52 @@
     <title>D'CIFRA</title>
     <link rel="stylesheet" href="D'CIFRA.css">
     <script src="https://vlibras.gov.br/vlibras-plugin.js"></script>
-
 </head>
 <body>
+    <!-- começo da audiodescrição -->
+    <script>
+        // Inicializar o mecanismo de síntese de fala
+        const synth = window.speechSynthesis;
+        let utterance; // Variável para armazenar o objeto da fala
+    
+        // Função para iniciar a audiodescrição
+        function iniciar() {
+          // Capturar o texto
+          const texto = document.getElementById("descricao").innerText;
+    
+          // Verificar se já há uma fala em andamento
+          if (synth.speaking) {
+            synth.cancel(); // Cancelar qualquer fala ativa
+          }
+    
+          // Criar a nova instância de fala
+          utterance = new SpeechSynthesisUtterance(texto);
+          utterance.lang = "pt-BR"; // Configurar o idioma
+          synth.speak(utterance);
+        }
+    
+        // Função para pausar a audiodescrição
+        function pausar() {
+          if (synth.speaking && !synth.paused) {
+            synth.pause();
+          }
+        }
+    
+        // Função para retomar a audiodescrição
+        function retomar() {
+          if (synth.paused) {
+            synth.resume();
+          }
+        }
+    
+        // Função para parar completamente a audiodescrição
+        function parar() {
+          synth.cancel(); // Cancela toda a fala ativa
+        }
+      </script>
+    <!-- fim da audiodescrição -->
+
+    <!-- começo da libras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
@@ -19,7 +62,7 @@
       <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
       </script>
-   
+    <!-- fim da libras -->
     
     <div class="header" id="header">
         <div class="logo_header">
@@ -41,7 +84,14 @@
     <div id="conteudo">
             <h1 style="text-align: center;;">BEM VINDO AO D'CIFRA!</h1> <img src="Logo.png" height="50" width="50" id="logo_texto" alt="logo do D'cifra" style="display: block; margin: auto;"> 
 <!-- INTODUÇÃO -->
-<div style="text-align: center;">     
+<div id="descricao" style="text-align: center;"> 
+    <div id="butoes">
+        <button class="butao" onclick="iniciar()">Iniciar Audiodescrição</button>
+        <button class="butao" onclick="pausar()">Pausar</button>
+        <button class="butao" onclick="retomar()">Retomar</button>
+        <button class="butao" onclick="parar()">Parar</button>
+    </div>
+    
 <p>
             Olá, bem vindo ao seu método fácil de aprendizado de cifras de violão. Nós da equipe do “d’cifra”, estamos muito felizes e orgulhosos de ter você conosco. Nesse site, você irá aprender primeiramente o que é a música, após este aprendizado, você irá aprender as tão desejadas cifras de violão.
             Nós sabemos que é chato mas é algo extremamente necessário pois a base de todas as músicas são teoria musical na pratica, desta maneira, tentaremos manter as coisas menos entediantes possíveis. obrigado!
@@ -57,11 +107,15 @@
 </div> 
     
         <img src="Violao.png" height="250" width="300" id="violao_deitado" style="display: block; margin: auto;">
+</div>
     
     
     <!-- FIM DO CONTEUDO -->
 
-    
+    <!-- inico do rodapé -->
+<footer>
+    <p>feito por Heitor Destro, Pedro Follador, </p>
+</footer>    
 
 </body>
 </html>

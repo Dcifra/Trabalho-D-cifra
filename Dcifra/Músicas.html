@@ -7,16 +7,61 @@
     <link rel="stylesheet" href="D'CIFRA.css">
 </head>
 <body>
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-          <div class="vw-plugin-top-wrapper"></div>
-        </div>
+    <!-- começo da audiodescrição -->
+    <script>
+      // Inicializar o mecanismo de síntese de fala
+      const synth = window.speechSynthesis;
+      let utterance; // Variável para armazenar o objeto da fala
+  
+      // Função para iniciar a audiodescrição
+      function iniciar() {
+        // Capturar o texto
+        const texto = document.getElementById("descricao").innerText;
+  
+        // Verificar se já há uma fala em andamento
+        if (synth.speaking) {
+          synth.cancel(); // Cancelar qualquer fala ativa
+        }
+  
+        // Criar a nova instância de fala
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = "pt-BR"; // Configurar o idioma
+        synth.speak(utterance);
+      }
+  
+      // Função para pausar a audiodescrição
+      function pausar() {
+        if (synth.speaking && !synth.paused) {
+          synth.pause();
+        }
+      }
+  
+      // Função para retomar a audiodescrição
+      function retomar() {
+        if (synth.paused) {
+          synth.resume();
+        }
+      }
+  
+      // Função para parar completamente a audiodescrição
+      function parar() {
+        synth.cancel(); // Cancela toda a fala ativa
+      }
+    </script>
+  <!-- fim da audiodescrição -->
+
+  <!-- começo da libras -->
+  <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
       </div>
-      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+  <!-- fim da libras -->
 
 <div class="header" id="header">
    <div class="logo_header">

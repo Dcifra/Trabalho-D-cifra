@@ -7,16 +7,61 @@
     <link rel="stylesheet" href="D'CIFRA.css">
 </head>
 <body>
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-          <div class="vw-plugin-top-wrapper"></div>
-        </div>
+    <!-- começo da audiodescrição -->
+    <script>
+      // Inicializar o mecanismo de síntese de fala
+      const synth = window.speechSynthesis;
+      let utterance; // Variável para armazenar o objeto da fala
+  
+      // Função para iniciar a audiodescrição
+      function iniciar() {
+        // Capturar o texto
+        const texto = document.getElementById("conteudo").innerText;
+  
+        // Verificar se já há uma fala em andamento
+        if (synth.speaking) {
+          synth.cancel(); // Cancelar qualquer fala ativa
+        }
+  
+        // Criar a nova instância de fala
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = "pt-BR"; // Configurar o idioma
+        synth.speak(utterance);
+      }
+  
+      // Função para pausar a audiodescrição
+      function pausar() {
+        if (synth.speaking && !synth.paused) {
+          synth.pause();
+        }
+      }
+  
+      // Função para retomar a audiodescrição
+      function retomar() {
+        if (synth.paused) {
+          synth.resume();
+        }
+      }
+  
+      // Função para parar completamente a audiodescrição
+      function parar() {
+        synth.cancel(); // Cancela toda a fala ativa
+      }
+    </script>
+  <!-- fim da audiodescrição -->
+
+  <!-- começo da libras -->
+  <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
       </div>
-      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script> 
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+  <!-- fim da libras --> 
     
     <div class="header" id="header">
         <div class="logo_header">
@@ -33,17 +78,26 @@
 <!-- FIM DO HEADER -->
 <!-- CONTEUDO   -->
 </div>
+
 <img src="back.jpg"Pessoa lendo algo em libras" style="display: block;margin: auto;width: 100vw; height: 35vh;" >
     <div id="conteudo">
             <h1 style="text-align: center;;"></h1> <img src="Logo.png" height="50" width="50" id="logo_texto" alt="logo do D'cifra" style="display: block; margin: auto;"> 
 <!-- INTODUÇÃO -->
 <div style="text-align: center;">     
-<p>
-    Para qualquer que seja a necessidade o D'Cifra disponibiliza o arquivo PDF para impressão gratuita sem qualquer custo, nos agradacemos pela confiança depositada na nossa equipe e nesse projeto, de todos da equipe D'Cifra obrigado! <br><br>
-
-    Abaixo o link para download! <br><br>
-
-    <img src="Imagens/pdf imagem.jpeg" height="150" width="130" a>  <br><br>
-
-    <a href="PDF/D'cifra.pdf" download="D'cifra.pdf">Baixar PDF</a>
- <br><br>
+<div>
+  <div id="butoes">
+    <button class="butao" onclick="iniciar()">Iniciar Audiodescrição</button>
+    <button class="butao" onclick="pausar()">Pausar</button>
+    <button class="butao" onclick="retomar()">Retomar</button>
+    <button class="butao" onclick="parar()">Parar</button>
+  </div>
+  <p>
+      Para qualquer que seja a necessidade o D'Cifra disponibiliza o arquivo PDF para impressão gratuita sem qualquer custo, nos agradacemos pela confiança depositada na nossa equipe e nesse projeto, de todos da equipe D'Cifra obrigado! <br><br>
+  
+      Abaixo o link para download! <br><br>
+  
+      <img src="Imagens/pdf imagem.jpeg" height="150" width="130" a>  <br><br>
+  
+      <a href="PDF/D'cifra.pdf" download="D'cifra.pdf">Baixar PDF</a>
+   <br><br> </p>
+</div>
