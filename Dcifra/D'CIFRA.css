@@ -33,6 +33,16 @@
     display: flex; /* Usa flexbox para facilitar o posicionamento */
     flex-direction: column; /* Define a direção dos elementos como coluna */
   }
+  
+  h1{
+    font-size: 50px;
+  }
+  h2{
+    font-size: 40;
+  }
+  p{
+    font-size: 24px;
+  }
 
   .logo_header{
     max-height: 50px; /* Ajustar o tamanho da logo */
@@ -139,7 +149,7 @@
     height: auto;
     width: 300px;
     margin: 5px;
-    margin-right: 400px;
+    
     padding: 3px;
 
     display: inline-block;
@@ -148,7 +158,7 @@
   }
 
   .cifras{
-    font-size: 3em;
+    font-size: 4em;
   }
   
   .cifras > a{
@@ -165,6 +175,10 @@
     border-radius: 5px;
     box-shadow: 0px 0px 20px  #b2fcff62;
     padding: 20px;
+  }
+
+  pre{
+    font-size: 18px;
   }
   /* fim da edição das músicas */
 
