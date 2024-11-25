@@ -29,10 +29,14 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color:var(--color-black1) ;
     color: var(--color-white);
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da viewport */
+    display: flex; /* Usa flexbox para facilitar o posicionamento */
+    flex-direction: column; /* Define a direção dos elementos como coluna */
   }
 
   .logo_header{
-    width: 45px;
+    max-height: 50px; /* Ajustar o tamanho da logo */
+    margin-right: 20px; /* Espaço entre a logo e o menu */
   }
 
   .header, .navigation_header{
@@ -44,11 +48,14 @@
 
   .header{
     background-color: var(--color-black2);
-    box-shadow: 1px 1px 4px var(--color-black4);
+    display: flex; /* Usar flexbox */
+    align-items: center; /* Alinhar verticalmente */
+    justify-content: flex-start; /* Alinhar à esquerda */
     height: 3.5em;
-    justify-content: space-between;
-    padding: 0 10%;
+    padding: 10px 20px;
     box-shadow: 0px 10px 85px rgba(255, 255, 255, 0.292);
+    position: sticky;
+    top: 0;
   }
 
   .navigation_header{
@@ -58,6 +65,7 @@
   .navigation_header a{
     text-decoration: none;
     color: var(--color-blue);
+    margin-right: 15px; /* Espaçamento entre links */
     transition: 1s;
     font-weight:  bold;
   }
@@ -66,6 +74,7 @@
     background-color: hsla(209, 95%, 69%, 0.26);
     padding: 10px;
     border-radius: 4.5px;
+    text-decoration: underline; /* Efeito hover */
   }
 
   .ativo{
@@ -88,29 +97,11 @@
     border-radius: 5px;
     box-shadow: 0px 0px 20px  #b2fcff38;
     padding: 5px;
+    font-size: 20px;
     
   }
-  #conteudoM{
-    display: block;
-    background-color: rgba(255, 255, 255, 0.906);
-    color: black;
-    width: 80vw;
-    margin: 30px auto;
-    border-radius: 5px;
-    box-shadow: 0px 0px 20px  #b2fcff62;
-    padding: 20px;
-  }
+  
 
-  #conteudoM > h1{
-    color: #0c6fcb;
-  }
-   #conteudoM > h2{
-    color:#64B3FB ;
-   }
-
-   div#conteudoM > p#introducao{
-    font-size: 21px;
-   }
 
    button.butao{
     background-color: rgba(147, 145, 145, 0.288);
@@ -121,7 +112,7 @@
     
     padding: 1px 5px 1px 5px;
 
-    font-size: 16px;
+    font-size: 18px;
 
     transition: 0.4s;
   }
@@ -138,14 +129,54 @@
     margin-bottom: 10px;
 
     text-align: center;
+    font-size: 18px;
     
   }
+  /* começo da edição das músicas */
+  .musica{
+    background-color: rgba(0, 0, 0, 0.233);
+    
+    height: auto;
+    width: 300px;
+    margin: 5px;
+    margin-right: 400px;
+    padding: 3px;
+
+    display: inline-block;
+
+    border-radius: 5px;
+  }
+
+  .cifras{
+    font-size: 3em;
+  }
+  
+  .cifras > a{
+    color: black;
+    text-decoration: none;
+  }
+  
+  #conteudoM{
+    display: block;
+    background-color: rgba(255, 255, 255, 0.906);
+    color: black;
+    width: 80vw;
+    margin: 30px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px  #b2fcff62;
+    padding: 20px;
+  }
+  /* fim da edição das músicas */
 
   footer{
+    position: relative; /* Cola o rodapé na parte inferior da página */
     background-color: black;
     color: white;
+    bottom: 0; /* Posiciona na parte inferior */
+    left: 0; /* Posiciona na borda esquerda */
+    width: 98.95%; /* Ocupa toda a largura */
+    padding: 10px; /* Adiciona um padding interno */
+    text-align: center; /* Centraliza o texto */
 
-    height: 10%;
 
-    text-align: center;
-  }
+}
